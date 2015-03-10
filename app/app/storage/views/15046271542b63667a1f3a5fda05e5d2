@@ -1,0 +1,117 @@
+<?php echo $__env->make('includes_front.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes_front.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+<div class="front-carousel margin-bottom-20" style="margin-top:-24px;">
+    <div id="myCarousel" class="carousel slide" >
+                        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <?php Combos::fotosslider(); ?>
+                          
+        </div>
+         <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>                
+</div>
+
+
+
+
+<div class="main">
+	<div class="container">
+	
+		<div class="row margin-bottom-40">            
+			<div class="col-md-12">
+				<?php /*<div class="col-md-6 col-sm-12"><h1>Nuestros proyectos</h1>
+				<p>
+					Tras 25 años de su fundación, mas de 9000 viviendas construidas y habiéndose posicionado como empresa líder en el sector inmobiliario chileno ENACO llega hoy al Perú como ENACORP.
+				</p>
+				<p>
+					 Con el objetivo de brindar su vasta experiencia al creciente mercado nacional y ofrecer innovadores conceptos y propuestas para un mercado de compradores, cada vez más exigente.
+				</p>
+				<p>
+					 Sus principales activos son la permanente orientación hacía sus clientes, valores respaldados por una filosofía empresarial y un equipo humano sólido.
+				</p>
+               </div>
+                <div class="col-md-6 col-sm-12">
+                    <img alt="" src="../../assets/frontend/pages/img/nosotros.jpg" class="img-responsive">
+				</div>*/?>
+				<div class="space" style="height: 50px!important; clear: both!important;"></div>
+			
+				<div class="team-block content content-center margin-bottom-40" id="team">
+				    <div class="container">
+				      <h2>BIENVENIDO A ENACORP</strong></h2>
+				      <h3 style="text-align: center;">Con 25 años en el mercado inmobiliario hemos ayudado a más de nueve mil de familias como la tuya a encontrar el hogar de sus sueños. Te invitamos a conocer las fascinantes opciones que tenemos para ti en nuestra querida Lima - Perú.</h3>
+				      <div class="space" style="height: 40px!important;clear: both!important;"></div>
+
+
+				       <div class="row" style="margin-left: 80px;margin-right: auto;">
+				      	<div class="col-md-11" >
+				      		 <div class="row mix-grid thumbnails">
+					        <?php foreach($pry as $proy): ?>
+
+	                                   <div class=" col-md-4 product-item">
+						                  <div class="pi-img-wrapper">
+						                    <img src="<?php echo asset('imgprd/'.$proy->image); ?>" class="img-responsive" alt="Berry Lace Dress">
+						                    <div>
+						                      <a href="<?=URL::to('proyecto/'.$proy->id); ?>" class="btn btn-default fancybox-fast-view">Ver más</a>
+						                    </div>
+						                  </div>
+			               				 <div class="descrip" style="width:100%; text-align: center;">
+					  				          <h3><?php echo $proy->nombre; ?></h3>
+					  				          <i class=”fa fa-map-marker></i> <em style="color: #fff;">CARABAYLLO, LIMA - NORTE</em>
+					  				          
+								          </div>   
+						                 
+						                </div>
+ 
+
+								<?php endforeach; ?>
+                              </div>
+			        	
+				        </div>
+				    </div>
+				      </div>
+				    </div>
+				    <div class="space" style="height: 50px!important; clear: both!important;"></div>
+				   
+				  </div>
+
+                <div class="modal fade" id="basic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content" >
+                  
+                      <div class="modal-body" style="margin: 0px -20px 0px 0px;">
+                      	<a title="Close" class="fancybox-item fancybox-close" style="right: -5px;" >
+                        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style=" position:absolute; top:11px; right:8px; height: 20px; width: 20px;" ></button>
+                        </a>
+                         <?php Combos::micmp(); ?>
+                      </div>
+                      
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                
+            <?php /*
+                <h1>Nuestros Productos</h1>
+				<p>
+					<strong>ENACORP</strong> llega al Perú con una amplia variedad de propuestas inmobiliarias de primer nivel. Hemos puesto especial énfasis en el desarrollo de proyectos combinando armónicamente la arquitectura con su entorno, lo cual es potenciado con parques y jardines privados. Trabajamos con las más prestigiosas oficinas de arquitectura y nuestras constructoras cuentan con una gran experiencia, de manera que podemos ofrecer un producto de alta calidad y excelente distribución.
+				</p>*/?>
+			
+	</div>
+</div>
+        </div>
+
+
+
+
+
+
+<?php echo $__env->make('includes_front.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

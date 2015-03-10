@@ -1,0 +1,17 @@
+<?php echo $__env->make('includes.cabecera2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title"> Modificar Categora<small></small></h3>            
+      </div>
+    </div>
+    <div class="row"><form name="formen" id="formen" action="/veesy/categora/sendedit" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="idc" id="idc" value="<?php echo $item[0]->id; ?>"/>
+    <div class="item"><div class="control-label labelfo">Nombre</div><div class="inputf"><input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" class="form-control n" value="<?php echo $item[0]->nombre; ?>"/></div></div><div class='item'><div class='control-label btnformc'><input type='submit' name='enviar' value='Enviar' class='btn green d'/></div></div>       
+  </div>  
+</div>             
+<?php echo $__env->make('includes.piedepagina2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

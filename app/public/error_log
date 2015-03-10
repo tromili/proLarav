@@ -1,0 +1,42 @@
+[29-Nov-2014 00:44:50 UTC] PHP Warning:  Uncaught exception 'ErrorException' with message 'Undefined variable: conn' in /home/apros/public_html/spp/app/controllers/FormsController.php:601
+Stack trace:
+#0 /home/apros/public_html/spp/app/controllers/FormsController.php(601): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', '/home/apros/pub...', 601, Array)
+#1 [internal function]: FormsController->postEliminartabla()
+#2 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(231): call_user_func_array(Array, Array)
+#3 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('postEliminartab...', Array)
+#4 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(FormsController), Object(Illuminate\Routing\Route), 'postEliminartab...')
+#5 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing in /home/apros/public_html/spp/app/controllers/FormsController.php on line 601
+[29-Nov-2014 00:44:50 UTC] PHP Fatal error:  Call to a member function select() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 601
+[29-Nov-2014 00:56:04 UTC] PHP Warning:  Uncaught exception 'ErrorException' with message 'Undefined variable: conn' in /home/apros/public_html/spp/app/controllers/FormsController.php:601
+Stack trace:
+#0 /home/apros/public_html/spp/app/controllers/FormsController.php(601): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', '/home/apros/pub...', 601, Array)
+#1 [internal function]: FormsController->postEliminartabla()
+#2 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(231): call_user_func_array(Array, Array)
+#3 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('postEliminartab...', Array)
+#4 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(FormsController), Object(Illuminate\Routing\Route), 'postEliminartab...')
+#5 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing in /home/apros/public_html/spp/app/controllers/FormsController.php on line 601
+[29-Nov-2014 00:56:04 UTC] PHP Fatal error:  Call to a member function select() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 601
+[29-Nov-2014 00:56:15 UTC] PHP Warning:  Uncaught exception 'ErrorException' with message 'Undefined variable: conn' in /home/apros/public_html/spp/app/controllers/FormsController.php:601
+Stack trace:
+#0 /home/apros/public_html/spp/app/controllers/FormsController.php(601): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', '/home/apros/pub...', 601, Array)
+#1 [internal function]: FormsController->postEliminartabla()
+#2 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(231): call_user_func_array(Array, Array)
+#3 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('postEliminartab...', Array)
+#4 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(FormsController), Object(Illuminate\Routing\Route), 'postEliminartab...')
+#5 /home/apros/public_html/spp/vendor/laravel/framework/src/Illuminate/Routing in /home/apros/public_html/spp/app/controllers/FormsController.php on line 601
+[29-Nov-2014 00:56:15 UTC] PHP Fatal error:  Call to a member function select() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 601
+[29-Nov-2014 01:08:47 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 611
+[01-Dec-2014 14:38:09 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 611
+[01-Dec-2014 14:41:02 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 614
+[01-Dec-2014 15:59:06 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 613
+[01-Dec-2014 16:28:03 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 613
+[01-Dec-2014 16:31:55 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 617
+[01-Dec-2014 16:40:17 UTC] PHP Parse error:  syntax error, unexpected '-', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/apros/public_html/spp/app/storage/views/63844e51a5e1875f8b59e66344b7f5ba on line 13
+[01-Dec-2014 16:42:09 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 617
+[01-Dec-2014 16:43:52 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 617
+[01-Dec-2014 16:45:20 UTC] PHP Fatal error:  Call to undefined function deleteDirectory() in /home/apros/public_html/spp/app/controllers/FormsController.php on line 617
+[01-Dec-2014 17:36:26 UTC] PHP Fatal error:  Call to a member function get() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 53
+[01-Dec-2014 17:36:27 UTC] PHP Fatal error:  Call to a member function get() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 53
+[01-Dec-2014 17:40:15 UTC] PHP Fatal error:  Call to a member function get() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 53
+[01-Dec-2014 17:44:13 UTC] PHP Fatal error:  Call to a member function get() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 53
+[01-Dec-2014 17:45:34 UTC] PHP Fatal error:  Call to a member function get() on a non-object in /home/apros/public_html/spp/app/controllers/FormsController.php on line 53

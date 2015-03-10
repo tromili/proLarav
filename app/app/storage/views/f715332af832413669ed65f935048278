@@ -1,0 +1,47 @@
+<?php echo $__env->make('includes_front.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes_front.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	
+
+			<div class="space" style="height: 50px!important; clear: both!important;"></div>
+			
+				<div class="team-block content content-center margin-bottom-40" id="team">
+				    <div class="container">
+				      <h2>Nuestros proyecto entregados</strong></h2>
+				      <div class="space" style="height: 40px!important;clear: both!important;"></div>
+
+				       <div class="row" style="margin-left: 80px;
+  margin-right: auto;">
+				      	<div class="col-md-11" >
+				      		 <div class="row mix-grid thumbnails" >
+					        <?php foreach($pry as $proy): ?>
+
+	                                   <div class=" col-md-4 product-item">
+						                  <div class="pi-img-wrapper">
+						                    <img src="<?php echo asset('imgprd/'.$proy->image); ?>" class="img-responsive" alt="Berry Lace Dress">
+						                    <div>
+						                      <a href="<?=URL::to('proyecto/'.$proy->id); ?>" class="btn btn-default fancybox-fast-view">Ver más</a>
+						                    </div>
+						                  </div>
+			               				 <div class="descrip" style="width:100%; text-align: center;">
+					  				          <h3><?php echo $proy->nombre; ?></h3>
+					  				          <i class=”fa fa-map-marker></i> <em style="color: #fff;">CARABAYLLO, LIMA - NORTE</em>
+					  				          
+								          </div>   
+						                 
+						                </div>
+ 
+
+								<?php endforeach; ?>
+                              </div>
+			        	
+				        </div>
+				    </div>
+				      </div>
+				    </div>
+				  </div>
+
+                
+
+			
+
+<?php echo $__env->make('includes_front.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

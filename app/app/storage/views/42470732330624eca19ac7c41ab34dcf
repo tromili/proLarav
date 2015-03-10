@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>SPP</title>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Metronic Shop UI description" name="description">
+  <meta content="Metronic Shop UI keywords" name="keywords">
+  <meta content="keenthemes" name="author">
+
+  <meta property="og:site_name" content="-CUSTOMER VALUE-">
+  <meta property="og:title" content="-CUSTOMER VALUE-">
+  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+  <meta property="og:url" content="-CUSTOMER VALUE-">
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Fonts START -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->  
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="../../assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+  <link href="../../assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+  <link href="../../assets/global/plugins/slider-layer-slider/css/layerslider.css" rel="stylesheet">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="../../assets/global/css/components.css" rel="stylesheet">
+  <link href="../../assets/frontend/layout/css/style.css" rel="stylesheet">
+  <link href="../../assets/frontend/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/frontend/pages/css/style-layer-slider.css" rel="stylesheet">
+  <link href="../../assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
+  <link href="../../assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+  <link href="../../assets/frontend/layout/css/custom.css" rel="stylesheet">
+  <!-- Theme styles END -->
+  <style type="text/css">
+  .fancybox-inner
+  {
+    height: 485px!important;
+    width: 512px!important;
+  }
+  </style>
+</head>
+<!-- Head END -->
+<!-- Body BEGIN -->
+<body class="ecommerce">
+    <?php foreach($cot as $ncot): ?>
+    <?php endforeach; ?>
+    <!-- BEGIN TOP BAR -->
+    <div class="pre-header cotizaciones" id="<?php echo $ncot->idcotizacion; ?>">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN TOP BAR LEFT PART -->
+                    <div class="pre-header">
+                      <div class="container">
+                          <div class="row">
+                              <!-- BEGIN TOP BAR LEFT PART -->
+                              <div class="col-md-6 col-sm-6">
+                                <?php if (Auth::user()->level>=2): ?>
+                                  <ul class="uls">
+                                    <li class="menu-dropdown">
+                                      <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                                      Accesos<i class="fa fa-angle-down"></i>
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                        <?php if (Auth::user()->level>=3): ?>
+                                          <li class=" dropdown-submenu">
+                                            <a href="<?=URL::to('admin/supadmin'); ?>">Super Admin</a>
+                                          </li>
+                                        <?php endif ?>
+                                          <li class=" dropdown-submenu">
+                                            <a href="<?=URL::to('admin/administrador'); ?>">Administrador</a>
+                                          </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                  <?php endif ?> 
+                              </div>
+                              <!-- END TOP BAR LEFT PART -->
+                              <!-- BEGIN TOP BAR MENU -->
+                              <div class="col-md-6 col-sm-6 additional-nav">
+                                  <ul class="list-unstyled list-inline pull-right">
+                                      <li>
+                                        <a href="<?=URL::to('logout'); ?>">
+                                        <i class="icon-key"></i> Cerrar Sesión </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <!-- END TOP BAR MENU -->
+                          </div>
+                      </div>        
+                    </div>
+                <!-- END TOP BAR LEFT PART -->
+            </div>
+        </div>        
+    </div>
+    <!-- END TOP BAR -->
+     <!-- BEGIN HEADER -->
+    <div class="header">
+      <div class="container">
+        <a class="site-logo" href="/admin"><?php echo HTML::image('img/logos.jpg', 'a picture', array('class' => 'thumb')); ?></a>
+
+        <!-- BEGIN CART -->
+        <div class="top-cart-block">
+          <div class="top-cart-info">
+            <?php
+              $conteo=array();
+              $csto=0;
+              foreach($canasta as $cnst)
+              {
+                $conteo[]=$cnst->id_pr;
+                $csto+=($cnst->precio*$cnst->cant_rec_pr);
+              }
+            ?>
+            
+            <a href="<?=URL::to('cotizador/cotidtlls/'.$cotiza); ?>" class="top-cart-info-count"><?php echo sizeof(array_unique($conteo)); ?> items</a>
+            <a href="<?=URL::to('cotizador/cotidtlls/'.$cotiza); ?>" class="top-cart-info-value">$<?php echo $csto; ?></a>
+          </div>
+          <i class="fa fa-shopping-cart"></i>          
+        </div>
+        <!--END CART -->
+      </div>
+    </div>
+    <!-- Header END -->
+    <div class="main">
+      <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="btn-group">
+          <a class="btn btn-default basebtn">Producto base</a>
+          <a class="btn btn-default complementariobtn">Producto complementario</a>
+        </div>
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SALE PRODUCT -->
+          <div class="col-md-12 sale-product prdbase">
+            <div class="row product-list">
+              <!-- PRODUCT ITEM START -->
+              <?php foreach($item as $key): ?>
+                <?php if($key->categoria_pr!=2): ?>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <?php $myimg = Combos::imgprd($key->id); ?> 
+                    <?php foreach($myimg as $img): ?>
+                    <img src="/imgprd/<?php echo $img->img_producto; ?>" class="img-responsive" alt="Berry Lace Dress">
+                    <?php endforeach; ?>
+                    <div>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view vrdtll" id="<?php echo $key->ides; ?>">Ver</a>
+                    </div>
+                  </div>
+                  <?php
+                    $mycosto=0;
+                    foreach ($costo as $costoso) {
+                        if($costoso->id_pr==$key->ides){;
+                          if($costoso->tipoderecursos!=2){
+                            $mycosto+=($costoso->cantit*$costoso->costo)*$ncot->Factor;
+
+                          }else{
+                            $mycosto+=($costoso->cantit*$costoso->costo);
+                          }
+                        }
+                    }
+                  ?>
+                  <h3><?php echo $key->nombre_pr; ?></h3>
+                  <div class="pi-price">$<?php echo $mycosto; ?></div>
+                </div>
+              </div>
+                <?php endif; ?>
+              <?php endforeach; ?>
+              <!-- PRODUCT ITEM END -->
+            </div>
+          </div>
+          <!-- END SALE PRODUCT -->
+          <!-- BEGIN SALE PRODUCT -->
+          <div class="col-md-12 sale-product complementario" style="display:none;">
+            <div class="row product-list">
+              <!-- PRODUCT ITEM START -->
+              <?php foreach($item as $key): ?>
+                <?php if($key->categoria_pr==2): ?>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <?php $myimg = Combos::imgprd($key->id); ?> 
+                    <?php foreach($myimg as $img): ?>
+                    <img src="/imgprd/<?php echo $img->img_producto; ?>" class="img-responsive" alt="Berry Lace Dress">
+                    <?php endforeach; ?>
+                    <div>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view vrdtll" id="<?php echo $key->ides; ?>">Ver</a>
+                    </div>
+                  </div>
+                  <?php
+                    $mycosto=0;
+                    foreach ($costo as $costoso) {
+                        if($costoso->id_pr==$key->ides){;
+                          if($costoso->tipoderecursos!=2){
+                            $mycosto+=($costoso->cantit*$costoso->costo)*$ncot->Factor;
+                            
+                          }else{
+                            $mycosto+=($costoso->cantit*$costoso->costo);
+                          }
+                        }
+                    }
+                  ?>
+                  <h3><a href="shop-item.html"><?php echo $key->nombre_pr; ?></a></h3>
+                  <div class="pi-price">$<?php echo $mycosto; ?></div>
+                </div>
+              </div>
+                <?php endif; ?>
+              <?php endforeach; ?>
+              <!-- PRODUCT ITEM END -->
+            </div>
+          </div>
+          <!-- END SALE PRODUCT -->
+        </div>
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
+      </div>
+    </div>
+    <!-- BEGIN fast view of a product -->
+    <div id="product-pop-up" style="display: none; width: 500px;">
+      <div class="product-page product-pop-up dtllPrd">
+      </div>
+    </div>
+    <!-- END fast view of a product -->
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/global/plugins/respond.min.js"></script>  
+    <![endif]-->
+    <script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="../../assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="../../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script src="../../assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
+    <script src="../../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="../../assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="../../assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+    <script src='../../assets/global/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+    <script src="../../assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+
+    <!-- BEGIN LayerSlider -->
+    <script src="../../assets/global/plugins/slider-layer-slider/js/greensock.js" type="text/javascript"></script><!-- External libraries: GreenSock -->
+    <script src="../../assets/global/plugins/slider-layer-slider/js/layerslider.transitions.js" type="text/javascript"></script><!-- LayerSlider script files -->
+    <script src="../../assets/global/plugins/slider-layer-slider/js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script><!-- LayerSlider script files -->
+    <script src="../../assets/frontend/pages/scripts/layerslider-init.js" type="text/javascript"></script>
+    <!-- END LayerSlider -->
+
+    <script src="../../assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $('.vrdtll').on('click', function(event) {
+        var data={};
+        data.idect=$('.cotizaciones').attr('id');
+        data.idesPrd=$(this).attr('id');
+        $.ajax({
+          type: 'POST',
+          data:data,       
+          url: '../../cotizador/detalle',         
+          success: function(data) {
+            $('.dtllPrd').html(data);
+            $('.imggrd').attr('src',$('#imges').attr('src'));
+            $('.imggrd').attr('id',$('#imges').parent().parent().find('.idclr').attr('id'));
+            imgenesPQ();
+            $('.zoomImg').remove();
+            Layout.initImageZoom();
+          }
+        });
+      });
+        jQuery(document).ready(function() {
+            Layout.init();
+        });
+      function imgenesPQ()
+      {
+        $('.imggrd').attr('id',$('.imagesPRD').attr('url'));
+        $('.imagesPRD').click(function(event) {
+          $('.imggrd').attr('src',$(this).attr('src'));
+          $('.imggrd').attr('id',$(this).attr('url'));
+          $('.zoomImg').remove();
+          Layout.initImageZoom();
+        });
+        $('.regprd').on('click', function(event) {
+          var data={};
+          data.coti=<?php echo $cotiza; ?>;
+          data.colores=parseFloat($('.imggrd').attr('id'));
+          data.Prd=parseFloat($(this).parent().attr('id'));
+          data.costo=parseFloat($('.costo').text());
+          data.costosIMP=parseFloat($('.costosIMP').attr('id'));
+          data.costosSIMP=parseFloat($('.costosSIMP').attr('id'));
+          $.ajax({
+            type: 'POST',
+            data:data,       
+            url: '../../cotizador/cotidtll',         
+            success: function(data) {
+              location.reload(true);
+            }
+          });
+        });
+      }
+      $('.basebtn').on('click', function(event) {
+        $('.prdbase').show('slow/400/fast');
+        $('.complementario').hide('slow/400/fast');
+        /* Act on the event */
+      });
+      $('.complementariobtn').on('click', function(event) {
+        $('.complementario').show('slow/400/fast');
+        $('.prdbase').hide('slow/400/fast');
+        /* Act on the event */
+      });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

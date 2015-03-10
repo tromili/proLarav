@@ -1,0 +1,110 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<style type="text/css" media="screen">
+
+
+/**/
+        .evo-palette
+        {
+          background: #fff;
+        }
+        .imgprd
+        {
+          height: 30px;
+        }
+        #clear{
+          clear:both;
+        }
+</style>
+<?php echo Form::open(array('url'=>'productos/guardar','files'=>true,'class'=>'form-horizontal')); ?>
+
+<h3 class="page-title">Editar producto</h3>
+<div class="col-md-12">
+  
+  <ul class="page-breadcrumb breadcrumb">
+    <li class="btn-group">
+    <a href="<?=URL::to('productos'); ?>" class="btn yellow-crusta">Regresar a listado productos</a>
+    <button type="submit" class="btn green"><span>Guardar</span></button>
+    </li>
+  </ul>
+</div>
+<!-- productos -->
+
+
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="portlet light">
+        <div class="portlet-body">
+          <div class="row margin-bottom-30">
+            <div class="row">
+            <!-- <form class="form-horizontal" role="form"> -->
+            
+              <div class="col-md-6 ">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet box blue-madison">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Productos
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Categoría</label>
+                        <div class="col-md-9">
+                          <select class="form-control" name="categoria">
+                            <?php $produdctosCod = Combos::CrearCombo('datcategorias','','id','categoria') ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Nombre</label>
+                        <div class="col-md-9">
+                          <?php echo Form::text('nombre', '', array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Código</label>
+                        <div class="col-md-9">
+                          <?php echo Form::text('codigo', '', array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Componentes</label>
+                        <div class="col-md-9">
+                          <?php echo Form::textarea('componentes', '', array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Tratamiendo</label>
+                        <div class="col-md-9">
+                          <?php echo Form::textarea('tratamientos', '', array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END SAMPLE FORM PORTLET-->
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

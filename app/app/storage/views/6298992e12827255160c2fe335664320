@@ -1,0 +1,15 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title"> Crear Recursos<small></small></h3>            
+      </div>
+    </div>
+    <div class="row"><form name="formen" id="formen" action="/veesy/recursos/save" method="post" enctype="multipart/form-data"><?php Formulario::devuelveListFk('tipoderecursos','nombrercs'); ?><div class='item'><div class='control-label labelfo'>Nombre Recurso</div><div class='inputf'><input type='text' name='descripcion' id='descripcion' placeholder='Recurso' class='form-control o' /></div></div><div class='item'><div class='control-label labelfo'>Unidad de medida</div><div class='inputf'><input type='text' name='um' id='um' placeholder='U.M.' class='form-control m' /></div></div><div class='item'><div class='control-label labelfo'>Costo Local</div><div class='inputf'><input type='text' name='costo' id='costo' placeholder='Costo' class='form-control b' /></div></div><div class='item'><div class='control-label btnformc'><input type='submit' name='enviar' value='Registrar Recurso' class='btn green Registrar Recurso' /></div></div>       
+  </div>  
+</div>             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

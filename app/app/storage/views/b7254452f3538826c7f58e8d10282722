@@ -1,0 +1,182 @@
+<?php echo $__env->make('includes_front.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes_front.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php foreach($pry as $proy): ?>
+<div class="main" style="margin-top:-24px;">
+	<div class="bgproyecto">
+		<img src="<?php echo asset('imgprd/'.$proy->banner); ?>"  class="img-responsive"/>
+	</div>
+	<?php if ($proy->estado == 2){ ?>
+	<div class="bubble">100% VENDIDO</div>
+	<?php }?>
+	<div class="container">
+		<!-- BEGIN SIDEBAR & CONTENT -->
+		<div class="row margin-bottom-40">
+			<div class="sidebar col-md-9 col-sm-6">
+				<ul class="nav nav-tabs">
+					<li class="active">
+					<a href="#tab_1_1" data-toggle="tab">
+					Planta </a>
+					</li>
+					<li>
+					<a href="#tab_1_2" data-toggle="tab">
+					Fotos </a>
+					</li>
+					<li>
+					<a href="#tab_1_3" data-toggle="tab">
+					Recorrido </a>
+					</li>
+					<li>
+					<a href="#tab_1_4" data-toggle="tab">
+					Avance de obra </a>
+					</li>
+					<li>
+					<a href="#tab_1_5" data-toggle="tab">
+					Ubicación </a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade active in" id="tab_1_1">
+						<p>
+							<img src="<?php echo asset('imgprd/'.$proy->planta); ?>" class="img-responsive"/>
+						
+
+						</p>
+					</div>
+					<div class="tab-pane fade front-carousel" id="tab_1_2">
+						<div id="myCarousel" class="carousel slide">
+
+							<div class="carousel-inner">
+
+								 <?php Combos::fotos($proy->id); ?>
+							
+
+								
+								
+									
+							</div>
+							<!-- Carousel items -->
+							
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+							</a>
+							<a class="carousel-control right" href="#myCarousel" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+							</a>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="tab_1_3">
+						<?php echo $proy->recorrido; ?>
+
+						</iframe>
+					</div>
+					<div class="tab-pane fade front-carousel" id="tab_1_4">
+						<div id="myCarousel" class="carousel slide">
+
+							<div class="carousel-inner">
+
+								 <?php Combos::fotosavan($proy->id); ?>
+							
+
+								
+								
+									
+							</div>
+							<!-- Carousel items -->
+							
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+							</a>
+							<a class="carousel-control right" href="#myCarousel" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+							</a>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab_1_5">	
+					
+							<?php echo $proy->ubicacion; ?>
+
+					</div>
+				</div>
+				<h2>Información General</h2>
+				<p>sin
+					<?php echo $proy->infogeneral; ?>
+
+				</p>
+				<p>
+					 Todo la comodidad y seguridad que tu y tu familia necesitan para vivir.
+				</p>
+				<h2>Áreas Comunes Equipadas</h2>
+				<div class="col-md-6">
+					<ul class="list-unstyled">
+						<?php foreach($dtllEtpe as $vdr): ?>
+						<li><i class="fa fa-check"></i> <?php echo $vdr->nombre; ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+				
+			</div>
+			<?php if ($proy->estado == 1){ ?>
+			<div class="sidebar col-md-3 col-sm-6" >
+				<div class="col-md-12 col-sm-6">
+					<h2>Más información</h2>
+					<?php if(Session::has('status')): ?>
+					    <div class="alert alert-success alert-dismissable">
+					      <button type="button" class="close" data-dismiss="alert">&times;</button>
+					      <strong><?php echo Session::get('status'); ?></strong>
+					    </div>
+					  <?php endif; ?>
+					<?php echo Form::open(array('url'=>'/correopro/'.$proy->id,'files'=>true,'class'=>'form-horizontal')); ?>
+
+						
+						<div class="form-group">
+							<label class="control-label">Nombre</label>
+							<input type="text" class="form-control" name="nombre">
+						</div>
+						<div class="form-group">
+							<label class="control-label">Email</label>
+							<input type="text" class="form-control" name="email"> 
+						</div>
+						<div class="form-group">
+							<label class="control-label">Teléfono</label>
+							<input type="text" class="form-control" name="telefono">
+						</div>
+						<div class="form-group">
+							<label class="control-label">Mensaje</label>
+							<textarea class="form-control" rows="5" id="mensaje" placeholder="Hola, estoy interesado en esta propiedad y quiero recibir más información. Muchas gracias." name="mensaje"></textarea>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-12">
+								<button type="submit" class="btn btn-primary">Enviar solicitud</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-12 col-sm-6">
+					<blockquote>
+						<h2>Contacto</h2>
+						<?php foreach($dtllEtp as $vdr): ?>
+						<p>
+							<strong><?php echo $vdr->nombre; ?></strong><br>
+							<br>
+							<i class="fa fa-phone"></i> <?php echo $vdr->telefono; ?><br>
+							<i class="fa fa-mobile"></i> <?php echo $vdr->celular; ?>
+
+						</p>
+						<?php endforeach; ?>
+						<p>
+							Atención: Lun a Dom de 9 a 6 PM
+						</p>
+					</blockquote>
+				</div>
+			</div>
+			<?php }?>
+			<!-- BEGIN CONTENT -->
+			<!-- END CONTENT -->
+		</div>
+		<!-- END SIDEBAR & CONTENT -->
+	</div>
+</div>
+<?php endforeach; ?>
+<?php echo $__env->make('includes_front.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

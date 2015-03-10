@@ -1,0 +1,165 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<style type="text/css" media="screen">
+/**/
+  .evo-palette
+  {
+    background: #fff;
+  }
+  .imgprd
+  {
+    height: 30px;
+  }
+  #clear
+  {
+    clear:both;
+  }
+  .caption
+  {
+    color: #000;
+    font-weight: bold!important;
+  }
+</style>
+<?php foreach($registros as $registro): ?>
+<?php endforeach; ?>
+<?php echo Form::open(array('url'=>'maestros/guardar/'.$registro->id,'files'=>true,'class'=>'form-horizontal')); ?>
+
+<h3 class="page-title">Editar Tipo de Obra</h3>
+<div class="col-md-12">
+  
+  <ul class="page-breadcrumb breadcrumb">
+    <li class="btn-group">
+    <a href="<?=URL::to('maestros'); ?>" class="btn yellow-crusta">Regresar a listado productos</a>
+    <button type="submit" class="btn green"><span>Guardar</span></button>
+    </li>
+  </ul>
+</div>
+<!-- productos -->
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="portlet light">
+        <div class="portlet-body">
+          <div class="row margin-bottom-30">
+            <div class="row">
+            <!-- <form class="form-horizontal" role="form"> -->
+              <div class="col-md-6 ">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet box">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Tipo de Obra
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Nombre</label>
+                        <div class="col-md-9">
+                          <?php echo Form::text('nombre', $registro->nombre, array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END SAMPLE FORM PORTLET-->
+              </div>
+              <div class="col-md-6 ">
+                <!-- prueba -->
+                <div class="portlet box">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Etapas de construcción
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="row static-info">
+                      <div class="col-md-8 value" id="">
+                        <div class="input-group">
+                          
+                          <span class="input-group-btn">
+                          <div class="input-icon">
+                            <select class="form-control etapas" name="etapas">
+                              <?php $produdctosCod = Combos::CrearCombo('dat_etapas_construccion','','id','nombre_etapa') ?>
+                            </select>                                      
+                          </div>
+                          <boton class="btn green addetp" type="button"><i class="fa fa-plus"></i></boton>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row static-info" id="resultadosBbuscador" style="max-height:250px; overflow-y:scroll;">
+                    <table class="mytablaAutoCom">
+                    <tbody>
+                    </tbody>
+                    </table>  
+                    </div>
+                    <div class="portlet-body">
+                      <table class="table table-hover table-bordered table-striped recetaTB">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Id etapa</th>
+                          <th>Nombre etapa</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($dtllEtp as $keyetp): ?>
+                            <tr>
+                              <td class="lna" id="<?php echo $keyetp->ides; ?>">
+                                <input type="hidden" name="" value="">
+                                <a href="javascript:;" class="eliminarEtp"><i class="fa fa-times"></i></a>
+                              </td>
+                              <td><?php echo $keyetp->ides; ?></td>
+                              <td><?php echo $keyetp->nombre_etapa; ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>           
+                  </div>
+                  </div>
+                </div>
+                <!-- end prueba -->
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+   //Add Etapas
+  $('.addetp').click(function(event) {
+    var data={};
+    lnaS=$(this).parent().parent();
+    data.recurso='<?php echo $registro->id; ?>';
+    data.etapas=$(lnaS).find('.etapas').val();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/productos/addetp',         
+      success: function(data) {
+        if(data>0){
+          location.reload();
+        }
+      }
+    });
+  });
+  $('.eliminarEtp').click(function(){
+    var data={};
+    data.ides=$(this).parent().parent().find('.lna').attr('id');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/productos/elmetp',         
+      success: function(data) {
+        $(elimianr).remove();
+      }
+    });
+  });
+</script>
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

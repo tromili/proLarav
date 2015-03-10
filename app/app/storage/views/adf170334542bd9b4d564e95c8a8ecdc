@@ -1,0 +1,15 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title"> Crear Datcategorias<small></small></h3>            
+      </div>
+    </div>
+    <div class="row"><form name="formen" id="formen" action="/veesy/datcategorias/save" method="post" enctype="multipart/form-data"><div class='item'><div class='control-label labelfo'>Nombre de categoría</div><div class='inputf'><input type='text' name='categoria' id='categoria' placeholder='categoria' class='form-control c' /></div></div><div class='item'><div class='control-label labelfo'>Tipo recurso</div><div class='inputf'><select name='id_recurso' id='id_recurso' class='form-control'><option value='0'>0</option><option value='2'>2</option></select></div></div><div class='item'><div class='control-label btnformc'><input type='submit' name='enviar' value='Registrar' class='btn green Registrar' /></div></div>       
+  </div>  
+</div>             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

@@ -1,0 +1,37 @@
+
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown dropdown-user">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <img alt="" class="img-circle" src="../../assets/admin/layout/img/avatar3_small.jpg"/>
+          <span class="username"><?php echo Auth::user()->username; ?></span>
+          <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="logout">
+              <i class="fa fa-key"></i>Cerrar Sesión</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+  <!-- MENU -->
+<div class="page-container">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="page-title">Error Sin accesos</h3>
+               
+        </div>
+      </div>
+      
+      <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

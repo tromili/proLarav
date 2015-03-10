@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+<style type="text/css">
+  .color1
+  {
+    background: #ff0;
+  }
+</style>
+<h1 class="color1">Comprobante de compra</h1>
+<?php if($registro): ?>
+  <?php foreach($registro as $registros): ?>
+  <?php endforeach; ?>
+<?php endif; ?>
+<?php
+  $fecha=explode(' ', $registros->created_at);
+  echo 'Fecha de Compra: '.Combos::fechas_formato_slash($fecha[0]);
+?>
+<table class="table table-striped table-hover prod">
+<thead>
+<tr>
+  <th>Código</th>
+  <th>Descripción</th>
+  <th>Total</th>
+</tr>
+</thead>
+<tbody>
+  <?php $produdctosCod = Productos::detalle_producto_compra($registros->id_compras) ?>
+  <?php foreach($produdctosCod as $impProd): ?>
+  <tr>
+    <td><?php echo $impProd->codigo; ?></td>
+    <td>
+      <?php echo $impProd->nombre; ?>
+
+      <div><?php echo $impProd->producto_cantidad_detalles; ?></div>
+    </td>
+    <td></td>
+  </tr>
+  <?php endforeach; ?>
+</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="portlet light">
+        <div class="portlet-body">
+          <div class="row margin-bottom-30">
+            <div class="col-md-12">
+            super admin
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

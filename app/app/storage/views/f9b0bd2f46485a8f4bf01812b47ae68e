@@ -1,0 +1,124 @@
+
+<?php echo $__env->make('includes.cabecera2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  <h3 class="page-title">Editar Módulo</h3>
+  	<div class="datosforms">
+  		<?php echo Form::open(array('url'=>'/veesy/modules/saveform')); ?>
+
+  			<?php echo Form::label('nombre', 'Nombre',array('class' => 'control-label')); ?>
+
+  			<?php echo Form::text('nombre', $registro->name,array('class' => 'form-control')); ?>
+
+  		<?php echo Form::close(); ?>
+
+  	</div>
+  	<div class="titcampos">Campos del formulario:</div>
+    <div class="areaforms">  <input type="hidden" name="idf" id="idf" value="<?php echo $registro->id_forms; ?>" /> 	
+    	<?php 
+    		$camps = explode('||',$registro->camps);
+    		$labels = explode('||',$registro->labels);
+    		$fields = explode('||',$registro->fields);
+    		$placeholder = explode('||',$registro->placeholder);
+    		$values = explode('||',$registro->values);
+    		$class = explode('||',$registro->class);
+
+    		for($i=0;$i<count($camps);$i++){
+    			switch($camps[$i]){
+
+    			case 'fk':
+		           echo "<li class='campo fk' data-tipo='fk'><input type='text' class='textcheckbox valord' placeholder='nombre' value='".$fields[$i]."'> <input type='text' class='textcheckbox autoc' placeholder='fk' onclick='listaforms(this);' value='".$values[$i]."'><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";		            		           
+		              break;
+
+		          case 'titulo':
+		            echo "<li class='campo titulo' data-tipo='titulo'><input type='text' class='titulof' value='".$values[$i]."' placeholder='Ingrese su titulo'/> <a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+		            break;
+
+		          case 'introtexto':
+		           echo "<li class='campo introtexto' data-tipo='introtexto'><textarea class='introtextareaf'>".$values[$i]."</textarea> <a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+		            break;
+
+		          case 'texto':
+		            echo "<li class='campo texto' data-tipo='texto'><input type='text' class='labelf' placeholder='Label' value='".$labels[$i]."'/> <input type='text' class='nombrecampo' placeholder='Nombre Campo' value='".$fields[$i]."'/> <input type='text' class='placeholder' placeholder='placeholder' value='".$placeholder[$i]."'/> <input type='text' class='classcampo' placeholder='class' value='".$class[$i]."'/><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+		            break;
+
+		          case 'cuadrotexto':
+		            echo "<li class='campo cuadrotexto' data-tipo='cuadrotexto'><input type='text' class='labelf' value='".$labels[$i]."' placeholder='Label'/><input type='text' class='nombrecampo' value='".$fields[$i]."' placeholder='Nombre Campo'/> <input type='text' class='classcampo' placeholder='class' value='".$class[$i]."'/><textarea class='textareaf'></textarea><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+		            break;
+
+		          case 'desplegable':
+		          	$htmlx='';
+		            
+
+		            	$all_l = explode('--',$labels[$i]);
+						$all_v = explode('--',$values[$i]);
+						echo "<li class='campo desplegable' data-tipo='desplegable'><input type='text' class='labelf' placeholder='Label' value='".$all_l[0]."'/> <input type='text' class='nombrecampo' placeholder='Nombre Campo' value='".$fields[$i]."'/><input type='text' class='classcampo' placeholder='class' value='".$class[$i]."'/><div class='grupooptions'>";
+
+						for($e=0;$e<count($all_v);$e++){
+							$htmlx .=  "<div class='filar'><div class='valradior'><input type='text' value='".$all_l[$e+1]."' class='textcheckbox autoc' placeholder='nombre' onclick='creaaucto(this,\"s\");'/><input type='text' class='textcheckbox valord' placeholder='valor' value='".$all_v[$e]."'/></div><a class='delintform' onclick='delfilalist(this)'><i class='fa fa-minus'></i></a></div>";
+						}
+
+
+		            $htmlx .=  "</div><button class='btnagregar' onclick='agregaroption(this);'><i class='fa fa-plus-circle'></i></button><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+
+		            echo $htmlx;
+		           // creaaucto();
+		              break;
+
+		          case 'radio':
+
+		          	$htmlx='';
+		            
+
+		            	$all_l = explode('--',$labels[$i]);
+						$all_v = explode('--',$values[$i]);
+						echo "<li class='campo radio' data-tipo='radio'><input type='text' class='labelf' placeholder='Label' value='".$all_l[0]."'/> <input type='text' class='nombrecampo' placeholder='Nombre Campo' value='".$fields[$i]."'/><input type='text' class='classcampo' placeholder='class' value='".$class[$i]."'/><div class='gruporadios'>";
+
+						for($e=0;$e<count($all_v);$e++){
+							$htmlx .=  "<div class='filar'><div class='radiol'><input type='radio' class='radiof' /></div><div class='valradior'><input type='text' value='".$all_l[$e+1]."' class='textcheckbox autoc' placeholder='nombre' onclick='creaaucto(this,\"r\");'/><input type='text' class='textcheckbox valord' placeholder='valor' value='".$all_v[$e]."'/></div><a class='delintform' onclick='delfilalist(this)'><i class='fa fa-minus'></i></a></div>";
+						}
+
+
+		            $htmlx .=  "</div><button class='btnagregar' onclick='agregaroption(this);'><i class='fa fa-plus-circle'></i></button><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+
+		            echo $htmlx;
+
+		              break;
+
+		          case 'checkbox':
+
+		          	$htmlx='';		            
+
+		            	$all_l = explode('--',$labels[$i]);
+						$all_v = explode('--',$values[$i]);
+						echo "<li class='campo checkbox' data-tipo='checkbox'><input type='text' class='labelf' placeholder='Label' value='".$all_l[0]."'/> <input type='text' class='nombrecampo' placeholder='Nombre Campo' value='".$fields[$i]."'/><input type='text' class='classcampo' placeholder='class' value='".$class[$i]."'/><div class='grupochecks'>";
+
+						for($e=0;$e<count($all_v);$e++){
+							$htmlx .=  "<div class='filar'><div class='radiol'><input type='checkbox' class='checkboxf' /></div><div class='valradior'><input type='text' value='".$all_l[$e+1]."' class='textcheckbox autoc' placeholder='nombre' onclick='creaaucto(this,\"r\");'/><input type='text' class='textcheckbox valord' placeholder='valor' value='".$all_v[$e]."'/></div><a class='delintform' onclick='delfilalist(this)'><i class='fa fa-minus'></i></a></div>";
+						}
+
+
+		            $htmlx .=  "</div><button class='btnagregar' onclick='agregaroption(this);'><i class='fa fa-plus-circle'></i></button><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+
+		            echo $htmlx;
+		            
+		              break;
+
+		          case 'enviar':
+		            echo "<li class='campo enviar' data-tipo='enviar'><button class='enviarf'>".$labels[$i]."</button><input type='text' class='labelf' placeholder='texto boton' value='".$labels[$i]."'/><input type='text' class='classcampo' placeholder='class' value='".$class[$i]."'/><a class='cerrari' onclick='cerrarfila(this)'><i class='fa fa-times'></i></a></li>";
+		              break;
+
+
+		        }
+    		}
+    	?>
+    </div>
+    <div class="btnforms">
+         <a class="btn green" onclick="guardarform();">Guardar</a>             
+    </div>
+             
+<?php echo $__env->make('includes.piedepagina2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+ </div>

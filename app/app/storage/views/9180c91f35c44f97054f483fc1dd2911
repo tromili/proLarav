@@ -1,0 +1,53 @@
+  <?php foreach($item as $key): ?> 
+  <?php endforeach; ?>
+  <?php foreach($cot as $ncot): ?>
+  <?php endforeach; ?>
+  <h2><?php echo $key->nombre_pr; ?></h2>
+</p>
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-3">
+      <div class="product-main-image">
+        <img src="" alt="Cool green dress with red bell" class="img-responsive imggrd">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-9">
+      <h4>Color/Acabado:</h4>
+        <div class="product-other-images">
+        <?php foreach($colores as $clr): ?>
+        <!-- <a href="#"><img alt="Berry Lace Dress" url="<?php echo $clr->id; ?>" id="imges" class="imagesPRD" src="/imgprd/<?php echo $clr->img_producto; ?>"></a> -->
+        <a href="#"><div style="background-color:<?php echo $clr->color_producto; ?>;height: 20px;width: 20px;float: left;" url="<?php echo $clr->id; ?>" id="imges" class="imagesPRD" src="/imgprd/<?php echo $clr->img_producto; ?>"></div></a>
+        <?php endforeach; ?>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="description">
+        <p><h4>Componentes:</h4><?php echo $key->componentes_pr; ?></p>
+        <p><h4>Tratamiento:</h4><?php echo $key->tratamiento_pr; ?></p>
+      </div>
+      <div class="price-availability-block clearfix">
+        <div class="price">
+        <?php
+            $mycosto=0;
+            $costosIMP=0;
+            $costosSIMP=0;
+            foreach ($costo as $costoso) {
+                if($costoso->id_pr==$key->ides){;
+                  if($costoso->tipoderecursos!=2){
+                    $mycosto+=($costoso->cantit*$costoso->costo)*$ncot->Factor;
+                    $costosIMP+=($costoso->cantit*$costoso->costo)*$ncot->Factor;
+                  }else{
+                    $mycosto+=($costoso->cantit*$costoso->costo);
+                    $costosSIMP+=($costoso->cantit*$costoso->costo);
+                  }
+                }
+            }
+          ?>
+          <div class="costosIMP" id="<?php echo $costosIMP; ?>"></div>
+          <div class="costosSIMP" id="<?php echo $costosSIMP; ?>"></div>
+          <strong><span>$</span><span class="costo"><?php echo $mycosto; ?></span></strong>
+        </div>
+      </div>
+      <div class="product-page-cart" id="<?php echo $key->ides; ?>">
+        <a href="javascript:;" class="btn btn-primary regprd">Cotizar</a>
+      </div>
+    </div>
+  </div>

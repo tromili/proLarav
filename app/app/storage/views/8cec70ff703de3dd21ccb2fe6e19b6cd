@@ -1,0 +1,27 @@
+<?php echo $__env->make('includes_front.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes_front.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php foreach($pry as $proy): ?>
+<div class="main">
+	<div class="container">
+	<!--	<div class="bgproyecto row">
+			<div class="col-md-12">
+				<img alt="" src="assets/frontend/pages/img/bgnosotros.jpg" class="img-responsive">
+			</div>
+		</div>-->
+		<div class="row margin-bottom-40">
+			<div class="col-md-12">
+			 	<div class="col-md-6 col-sm-12"><h1>Nuestra Empresa</h1>
+					<p><?php echo $proy->textointro; ?></p>
+               	</div>
+                <div class="col-md-6 col-sm-12">
+                    <img src="<?=url::to('imgprd/'.$proy->image);?>" alt="">
+				</div>
+                <h1>Nuestros Productos</h1>
+				<p><?php echo $proy->textocompl; ?></p>
+			
+			</div>
+		</div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<?php echo $__env->make('includes_front.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

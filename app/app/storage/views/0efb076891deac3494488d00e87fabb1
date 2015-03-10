@@ -1,0 +1,348 @@
+<?php
+session_start();
+require_once('class/cidea_fun.php');
+  
+  $_SESSION['url']=$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+  if (!$_SESSION['usuario_logueado']) {
+    header('Location: ../login.php');
+  }
+  $usr = $_SESSION['usuario_logueado']->nombre_apellido;
+  $nivel = $_SESSION['usuario_logueado']->nivel;
+  $idUser = $_SESSION['usuario_logueado']->id;
+
+?>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Cidea7 Admin</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" href="../../assets/global/plugins/data-tables/DT_bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
+<link href="../../assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="../../assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="../../assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<script src="../../assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var usr = '<?php echo $idUser; ?>';
+</script>
+<style type="text/css" media="screen">
+.page-content {
+  margin-left: 0!important;
+}
+</style>
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<body class="page-header-fixed ">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+  <!-- BEGIN HEADER INNER -->
+  <div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <!-- END LOGO -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <?php if ($nivel==100) {
+      # code...
+    ?>
+    <div class="hor-menu hor-menu-light hidden-sm hidden-xs menuadmin">
+      <ul class="nav navbar-nav">
+        <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+        <li class="">
+          <a href="#">
+          <strong>Admin CIDEA7</strong>
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/noticias.php">
+          Gestor de noticias
+          </a>
+        </li>        
+      </ul>
+    </div>
+    <?php 
+      }else if ($nivel==500) {
+      # code...
+    ?>
+    <div class="hor-menu hor-menu-light hidden-sm hidden-xs menuadmin">
+      <ul class="nav navbar-nav">
+        <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+        <li class="">
+          <a href="#">
+          <strong>Admin CIDEA7</strong>
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/bienvenido.php">
+          Bienvenido
+          </a>
+        </li> 
+          <li class="">
+          <a href="../vistas/participantes.php">
+          Participantes en general
+          </a>
+        </li>   
+          <li class="">
+          <a href="../vistas/asistentes_virtuales.php">
+          Asistentes virtuales
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/asistentes_presenciales.php">
+          Asistentes presenciales
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/seguimiento_trabajos_expos.php">
+          Expositores
+          </a>
+        </li>          
+      </ul>
+    </div>
+    <?php 
+      }else if($nivel==800){
+    ?>
+      <div class="hor-menu hor-menu-light hidden-sm hidden-xs menuapoyo">
+      <ul class="nav navbar-nav">
+        <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+        <li class="">
+          <a href="#">
+          <strong>Admin CIDEA7</strong>
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/usuarios_admin.php">
+          Usuarios del sistema
+          </a>
+        </li> 
+          <li class="classic-menu-dropdown">
+					<a data-toggle="dropdown" href="javascript:;">
+					Participantes <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-left">
+						<li>
+							<a href="../vistas/participantes.php">
+							Todos los registrados</a>
+						</li>
+						<li>
+							<a href="../vistas/participantes_finalistas.php">
+							Participantes finales </a>
+						</li>
+                        <li>
+							<a href="../vistas/asistentes_virtuales.php">
+							Asistentes virtuales</a>
+						</li>
+						
+					</ul>
+				</li> 
+<li class="classic-menu-dropdown">
+					<a data-toggle="dropdown" href="javascript:;">
+					Asistentes presenciales <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-left">
+						<li>
+							<a href="../vistas/asistentes_presenciales.php">
+							Listado de admitidos</a>
+						</li>
+						<li>
+							<a href="../vistas/control_edicion_presenciales.php">
+							Admisión y seguimiento </a>
+						</li>
+						
+					</ul>
+				</li>                      
+          <li class="classic-menu-dropdown">
+					<a data-toggle="dropdown" href="javascript:;">
+					Expositores <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-left">
+						<li>
+							<a href="../vistas/edicion_evaluaciones.php">
+							Evaluación de admisión </a>
+						</li><li>
+							<a href="../vistas/control_edicion_expositores.php">
+							Seguimiento de asistencia</a>
+						</li>
+                        <li>
+							<a href="../vistas/seguimiento_trabajos_expos.php">
+							Trabajos finales </a>
+						</li>
+						<li>
+							<a href="../vistas/prog_expos_por_tema.php">
+							Expositores por sesión </a>
+						</li>
+                        <li>
+							<a href="../vistas/expositores_sin_sesion.php">
+							Expositores sin selección </a>
+						</li>
+						
+						
+					</ul>
+				</li> 
+          <li class="">
+          <a href="../vistas/estadisticas.php">
+          Indicadores y estadisticas
+          </a>
+        </li>           
+      </ul>
+    </div>
+    <?php }else if($nivel==600){
+    ?>
+      <div class="hor-menu hor-menu-light hidden-sm hidden-xs menuluis">
+      <ul class="nav navbar-nav">
+        <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+        <li class="">
+          <a href="#">
+          <strong>Admin CIDEA7</strong>
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/bienvenido.php">
+          Bienvenido
+          </a>
+        </li> 
+          <li class="">
+          <a href="../vistas/participantes.php">
+          Participantes en general
+          </a>
+        </li>   
+          <li class="">
+          <a href="../vistas/asistentes_virtuales.php">
+          Asistentes virtuales
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/asistentes_presenciales.php">
+          Asistentes presenciales
+          </a>
+        </li>
+          <li class="">
+          <a href="../vistas/seguimiento_trabajos_expos.php">
+          Expositores
+          </a>
+        </li> 
+          <li class="">
+          <a href="../vistas/estadisticas.php">
+          Estadisticas
+          </a>
+        </li> 
+      </ul>
+    </div>
+    <?php }
+      ?>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown dropdown-user">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <img alt="" class="img-circle" src="../../assets/admin/layout/img/avatar3_small.jpg"/>
+          <span class="username">Hola <?php echo $usr ?></span>
+          <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../logout.php">
+              <i class="fa fa-key"></i>Cerrar Sesión</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+  <!-- MENU -->
+<div class="page-container">
+sss
+</div>
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+  <div class="page-footer-inner">
+     2014 &copy; <a href="http://www.apros.pe">APROS</a>.
+  </div>
+  <div class="page-footer-tools">
+    <span class="go-top">
+    <i class="fa fa-angle-up"></i>
+    </span>
+  </div>
+</div>
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+    <script src="../../assets/global/plugins/respond.min.js"></script>
+    <script src="../../assets/global/plugins/excanvas.min.js"></script> 
+    <![endif]-->
+<script src="../../assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../../assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="../../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="../../assets/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/data-tables/DT_bootstrap.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script src="../../assets/admin/pages/scripts/ui-toastr.js"></script>
+<script src="../../assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="../../assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="../../assets/global/scripts/datatable.js"></script>
+<script src="../js/erp.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+        jQuery(document).ready(function() {    
+           Metronic.init(); // init metronic core components
+Layout.init(); // init current layout
+        });
+/*toastr.options.closeButton = true;*/
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "positionClass": "toast-top-right",
+  "onclick": null,
+  "showDuration": "1000",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

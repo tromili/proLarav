@@ -1,0 +1,264 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <!-- END LOGO -->
+      <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+      <a href="javascript:;" class="menu-toggler"></a>
+      <!-- END RESPONSIVE MENU TOGGLER -->
+      <!-- BEGIN TOP NAVIGATION MENU -->
+      <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+          <!-- BEGIN USER LOGIN DROPDOWN -->
+          <li class="dropdown dropdown-user dropdown-dark">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <img alt="" class="img-circle" src="../../assets/admin/layout3/img/avatar9.jpg">
+            <span class="username username-hide-mobile"><?php echo Auth::user()->username; ?></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-default">
+              <li>
+                <a href="<?=URL::to('logout'); ?>">
+                <i class="icon-key"></i> Log Out </a>
+              </li>
+            </ul>
+          </li>
+          <!-- END USER LOGIN DROPDOWN -->
+        </ul>
+      </div>
+      <!-- END TOP NAVIGATION MENU -->
+    </div>
+  </div>
+  <!-- END HEADER TOP -->
+  <?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+<!-- END HEADER -->
+<div class="page-container">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-12">
+        <form role="form" action="<?php echo URL::to('registros/registronuevo', ''); ?>" method="post">
+        <!-- mensajes -->
+        <!-- endmensajes -->
+          <h3 class="page-title">Contacto</h3>
+        <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN EXAMPLE TABLE PORTLET-->
+          <div class="portlet light">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-globe"></i>Nuevo
+              </div>
+              <div class="tools">
+              </div>
+            </div>
+            <div class="portlet-body">
+              <div class="modal-body">
+                <div class="row">
+                <!-- Simple formulario-->
+                  <div class="col-md-6 ">
+                    <div class="portlet light">
+                      <div class="portlet-body form">
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Nombre</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('nombre', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Apellidos</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('apellidos', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">DNI</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('dni', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Fecha de Nacimiento</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('fnacimiento', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Teléfono Fijo</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('telefonofijo', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Celular</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('celular', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Correo</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('correo', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Tipo de Registro</label>
+                          <div class="col-md-8">
+                            <div class="radio-list">
+                              <label class="radio-inline">
+                                <div class="radio" id="uniform-optionsRadios25">
+                                  <span>
+                                    <input type="radio" name="tipo_registro" id="optionsRadios25" value="0">
+                                  </span>
+                                </div> Cliente
+                              </label>
+                              <label class="radio-inline">
+                                <div class="radio" id="uniform-optionsRadios26">
+                                  <span class="checked">
+                                    <input type="radio" name="tipo_registro" id="optionsRadios26" value="1">
+                                  </span>
+                                </div> Proveedor
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                      </div>
+                    </div>
+                  </div>
+                <!-- Simple formulario-->
+                <!-- Simple formulario-->
+                  <div class="col-md-6 ">
+                    <div class="portlet light">
+                      <div class="portlet-body form">
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">RUC</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('ruc', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Razón social</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('razon_social', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Dirección domicilio</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('direccion_domicilio', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->            
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Referencia</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('referencia', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Clasificación</label>
+                            <div class="col-md-8">
+                              <select name="tventa" class="form-control">
+                                <?php $produdctosCod = Combos::CrearCombo('dat_precios','','id_precios','nombre_precios') ?>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Dirección fiscal</label>
+                            <div class="col-md-8">
+                              <?php echo Form::text('direccion_fiscal', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                        <!-- input -->
+                        <div class="form-body">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Observaciones</label>
+                            <div class="col-md-8">
+                              <?php echo Form::textarea('observacion', '', array('class' => 'form-control')); ?>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end input -->
+                      </div>
+                    </div>
+                  </div>
+                <!-- Simple formulario-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+          </div>
+            <div class="orm-actions right modal-footer">
+              <button type="submit" class="btn green">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

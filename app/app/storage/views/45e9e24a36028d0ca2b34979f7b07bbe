@@ -1,0 +1,15 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title"> Crear Hola<small></small></h3>            
+      </div>
+    </div>
+    <div class="row"><form name="formen" id="formen" action="/veesy/hola/save" method="post" enctype="multipart/form-data"><div class='item'><div class='labelfo'>modulo</div><div class='inputf'><input type='text' name='xxxxx' id='xxxxx' placeholder='aaaa' class='d' /></div></div><div class='item'><div class='labelfo'><input type='submit' name='enviar' value='ttttt' /></div></div>       
+  </div>  
+</div>             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

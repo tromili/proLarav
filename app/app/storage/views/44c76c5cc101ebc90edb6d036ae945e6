@@ -1,0 +1,99 @@
+<?php echo $__env->make('includes_admin.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes_admin.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php foreach($regist as $slide): ?>
+<div class="page-container">
+	<!-- BEGIN PAGE HEAD -->
+	<div class="page-head">
+		<div class="container">
+			<!-- BEGIN PAGE TITLE -->
+			<div class="page-title">
+				<h1>Editar slider</h1>
+			</div>
+			<!-- END PAGE TITLE -->
+			<!-- BEGIN PAGE TOOLBAR -->
+			<div class="page-toolbar">
+	
+			</div>
+			<!-- END PAGE TOOLBAR -->
+		</div>
+	</div>
+	<!-- END PAGE HEAD -->
+	<!-- BEGIN PAGE CONTENT -->
+	<div class="page-content">
+		<div class="container">
+		
+			<!-- BEGIN PAGE CONTENT INNER -->
+			<div class="row">
+				<div class="col-md-12">
+						<div class="col-md-6">
+						<div class="portlet box yellow">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>Datos de slider
+										</div>
+										
+									</div>
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										<?php echo Form::open(array('url'=>'admin/acslide/'.$slide->id,'files'=>true,'class'=>'form-horizontal')); ?>
+
+											<div class="form-body">
+												
+												<div class="form-group">
+													<label class="col-md-3 control-label">Texto</label>
+													<div class="col-md-9">
+														 <textarea class="wysihtml5 form-control" rows="6" name="texto" ><?php echo $slide->texto; ?></textarea>
+													</div>
+												</div>
+												
+												<div class="form-group">
+							                      <label class="col-md-3 control-label">Foto</label>
+							                      <div class="col-md-9">
+							                        <input type="file" name="foto" id="exampleInputFile">
+							                      </div>
+							                      </div>
+							                      <div class="row" style="margin-left: 80px;margin-right: auto;">
+							                        <div class="col-md-11" >
+							                          <div class="row mix-grid thumbnails">
+							                            <div class=" col-md-4 product-item">
+							                              <div class="pi-img-wrapper" >
+							          
+							                                <img src="<?php echo asset('images/slides/'.$slide->imagen); ?>" class="img-responsive" alt="Berry Lace Dress">
+							                              </div>    
+							                            </div>     
+							                          </div>
+							                        </div>
+							                      </div>
+												
+											</div>
+											<div class="form-actions fluid">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<button type="submit" class="btn green">Guardar cambios</button>
+														<button type="button" class="btn default">Cancelar</button>
+													</div>
+												</div>
+											</div>										
+											
+										</form>
+									</div>
+								</div></div>
+                    
+
+							 <div class="col-md-6 ">
+			                <!-- prueba -->
+			                
+			                <!-- end prueba -->
+			              </div>
+				
+				</div>
+			</div>
+			<!-- END PAGE CONTENT INNER -->
+		</div>
+	</div>
+	<!-- END PAGE CONTENT -->
+</div>
+
+<?php endforeach; ?>
+
+<?php echo $__env->make('includes_admin.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

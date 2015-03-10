@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>SPP</title>
+  <!-- Theme styles END -->
+  <style type="text/css">
+    body{
+      font-family: 'dejavu sans condensed';
+    }
+  </style>
+</head>
+<!-- Head END -->
+<!-- Body BEGIN -->
+<body class="ecommerce">
+<?php foreach($cliente as $clt): ?>
+<?php endforeach; ?>
+     <!-- BEGIN HEADER -->
+    <div class="header">
+    <img src="./imgprd/<?php Combos::Presentacion('cabecerapdf'); ?>" alt="" />
+    </div>
+        <div class="col-md-7" style="position: absolute;z-index: 9;right: 10px;">
+            <label class="col-md-5 control-label">Fecha de levantamiento</label>: <label class="col-md-4 control-label"><?php echo Combos::fechas_formato_slash($clt->levantamiento); ?></label>
+        </div>
+    <div class="main">
+        <div class="container">
+            <h3 class="page-title">DATOS DE COTIZACIÓN</h3>
+      
+          <!-- BEGIN SAMPLE FORM PORTLET-->
+            
+            <div class="portlet-body" style="position: absolute;z-index: 9;left: 10px;">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label class="col-md-3 control-label"><strong>Nombre completo de destinatario:</strong></label>
+                  <label class="col-md-4 control-label"><?php echo $clt->nombre; ?> <?php echo $clt->apellidop; ?> <?php echo $clt->apellidom; ?></label>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label class="col-md-3 control-label"><strong># habitantes en la vivienda: </strong></label>
+                  <label class="col-md-4 control-label"><?php echo $clt->habitantes; ?></label>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label class="col-md-3 control-label"><strong>Barrio o zona: </strong></label>
+                  <label class="col-md-4 control-label"><?php echo $clt->barrio; ?></label>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label class="col-md-3 control-label"><strong>Promotor: </strong></label>
+                  <label class="col-md-4 control-label"><?php echo $clt->username; ?></label>
+                </div>
+              </div>
+            </div>              
+            </div>
+          <!-- END SAMPLE FORM PORTLET-->
+        </div>
+      </div>
+    </div>
+    <div style="clear:both;">
+    <!-- Header END -->
+    <div class="main" style="position: absolute;z-index: 9;top:200px;">
+      <div class="container">
+       <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                      
+            <div class="portlet-body">
+              <table class="table table-striped table-bordered table-hover" id="sample_4" style="width:100%;">
+              <thead style="border-bottom: 1px solid #999;">
+              <tr>
+                <th>Imagen</th>
+                <th >Descripción</th>              
+                <th>Código</th>
+                <th>Costo</th>  
+              </tr>
+              </thead>
+              <tbody>
+                <?php foreach($items as $cmpr): ?>
+                  <tr>
+                    <td>
+                      <?php if($cmpr->img_producto): ?>
+                        <img src="./imgprd/<?php echo $cmpr->img_producto; ?>" style="width:100px;" alt="" />
+                      <?php endif; ?>
+                    </td>              
+                    <td><?php echo $cmpr->nombre_pr; ?>
+
+                        <br><div style="width:30px;height:30px;background:<?php echo $cmpr->color_producto; ?>;"></div>                      
+                        <br><?php echo $cmpr->componentes_pr; ?>
+
+                    </td>
+                    <td>
+                      <?php echo $cmpr->codigo_pr; ?>  
+                    </td>                    
+                      <td>
+                        <?php echo $cmpr->preciosrs*$clt->tcambio; ?>
+
+                        <div class="costofct" id=""></div>
+                        <div class="costosfct" id=""></div>
+                      </td>
+                  </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="2">
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <label class="col-md-3 control-label"><strong>Observaciones: </strong></label>
+                          <label class="col-md-4 control-label"><?php echo $clt->observaciones; ?></label>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      $costos=Combos::costoprd2($clt->idcotizacion);
+                    ?>
+                    <td>IVA</td>
+                    <td class="ivas"><?php
+                      $cst=0;
+                      if ($clt->iva==1) {
+                        $cst= (($costos[1]*$clt->tcambio)*19)/100;
+                        echo $cst;
+                      }else{
+                        echo '0.00';
+                      }
+                    ?></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td class="ttlgg"><?php echo ($costos[1]*$clt->tcambio)+$costos[0]+$cst; ?></td>
+                  </tr>
+              </tbody>
+              </table>
+            </div>
+          <!-- END EXAMPLE TABLE PORTLET-->
+      </div>
+    </div>
+    <div style="position: absolute;z-index: 9;bottom:50px;left:30px;border-top: 1px solid #000;">Firma del destinatario</div>
+    <div style="position: absolute;z-index: 9;bottom:50px;right:30px;border-top: 1px solid #000;">Firma del promotor</div>
+<script>
+jQuery(document).ready(function() {       
+    Metronic.init(); // init metronic core components
+    Layout.init(); // init current layout
+    QuickSidebar.init(); // init quick sidebar
+    Demo.init(); // init demo features
+    ComponentsPickers.init();
+});
+$('.eliminarPrd').click(function(){
+    var data={};
+    data.ides=$(this).attr('id');
+    data.idcoti=$(this).attr('url');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/cotizador/eliminar',         
+      success: function(data) {
+        $(elimianr).remove();
+      }
+    });
+  });
+  $('.EdtPrd').click(function(){
+    var data={};
+    data.ides=$(this).attr('id');
+    data.idcoti=$(this).attr('url');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/cotizador/edirest',         
+      success: function(data) {
+        $(".edirstct").html(data);
+      }
+    });
+  });
+var material=0;
+var humano=0;
+$('.costofct').each(function() {
+  material+=parseFloat($(this).attr('id'));
+  humano+=parseFloat($(this).parent().find('.costosfct').attr('id'));
+});
+$('.estadoclss').change(function(event) {
+  if($(this).val()==3){
+    $('.progreso').css('display', 'block');
+  }else{
+    $('.progreso').css('display', 'none');
+  }
+});
+$('.progreso').on('click', function(event) {
+  $(this).remove();
+  var data={};
+  data.cotid='<?php echo $clt->ides; ?>';
+  data.ides=new Array();
+  var i=0;
+  $('.EdtPrd').each(function(){
+    data.ides[i]=$(this).attr('id');
+    i++;
+  });
+  $.ajax({
+    type: 'POST',
+    data:data,       
+    url: '/cotizador/tobras',         
+    success: function(data) {
+      $(".tipoobr").html(data);
+    }
+  });
+});
+$('.progresoobr').on('click', function(event) {
+  var data={};
+  data.cotid='<?php echo $clt->ides; ?>';
+  $.ajax({
+    type: 'POST',
+    data:data,       
+    url: '/cotizador/obrasimp',         
+    success: function(data) {
+      $(".tipoobr").html(data);
+    }
+  });
+});
+</script>
+</body>
+<!-- END BODY -->
+</html>

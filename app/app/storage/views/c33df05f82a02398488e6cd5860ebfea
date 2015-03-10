@@ -1,0 +1,36 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title">Sdfsdfsdf<small></small></h3>
+        <div class="btnright">
+         <a class="btn green" href="/veesy/sdfsdfsdf/create">Agregar nuevo Sdfsdfsdf</a>             
+        </div>      
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+              <table class="table table-striped table-bordered table-advance table-hover">
+              <thead>
+              <tr><th>sdf</th><th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php 
+                foreach($lista as $fila): ?><tr id="f<?php echo $fila->id; ?>"><td><?php echo $fila->sdf; ?></td><td width="50" style="position:relative;"><a data-toggle="modal" href="/veesy/sdfsdfsdf/edit/<?php echo $fila->id; ?>"><i class="fa fa-edit"></i></a> <a data-funcion="eliminarforms('sdfsdfsdf',<?php echo $fila->id; ?>);" class="actdel"><i class="fa fa-times"></i></a></td>
+                </tr> <?php endforeach; ?>
+              </tbody>
+              </table>  
+          </div> 
+    <!-- END EXAMPLE TABLE PORTLET-->
+
+  </div>       
+</div>  
+                  <!-- /.modal-content -->
+              </div>
+             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

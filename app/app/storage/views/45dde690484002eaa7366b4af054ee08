@@ -1,0 +1,353 @@
+<?php echo $__env->make('includes_admin.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes_admin.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="page-container">
+	<!-- BEGIN PAGE HEAD -->
+	<div class="page-head">
+		<div class="container">
+			<!-- BEGIN PAGE TITLE -->
+			<div class="page-title">
+				<h1>Actualización de contenido de páginas varias</h1>
+			</div>
+			<!-- END PAGE TITLE -->
+			<!-- BEGIN PAGE TOOLBAR -->
+			<div class="page-toolbar">
+			</div>
+			<!-- END PAGE TOOLBAR -->
+		</div>
+	</div>
+	<!-- END PAGE HEAD -->
+	<!-- BEGIN PAGE CONTENT -->
+	<div class="page-content">
+		<div class="container">
+			<!-- BEGIN PAGE CONTENT INNER -->
+			<div class="row">
+				<div class="col-md-12">
+                    <div class="col-md-6">
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>Inicio
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<?php echo Form::open(array('url'=>'admin/nvindex/','files'=>true,'class'=>'form-horizontal')); ?>
+
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">Fotos slider</label>
+										<div class="col-md-9">
+											<input type="file" name="imagesl" id="exampleInputFile">
+										</div>
+									</div>
+									 <div class="row" style="margin-left: 80px;margin-right: auto;">
+								      	<div class="col-md-11" >
+								      		 <div class="row mix-grid thumbnails">
+
+									        <?php foreach($slid as $slide): ?>
+
+
+										                 <div class=" col-md-4 product-item">
+										                  <div class="pi-img-wrapper" >
+										                  	
+			                              						<div class="lna" id="<?php echo $slide->id; ?>">
+												                    <a href="javascript:;" class="eliminarEtp"><i class="fa fa-times"></i></a>
+												                    <img src="<?php echo asset('imgprd/'.$slide->imagesl); ?>" class="img-responsive" alt="Berry Lace Dress">
+										                  		</div>
+										                  	
+										                  </div>
+							               				 
+										                 
+										                </div>
+				 
+
+												<?php endforeach; ?>
+				                              </div>
+							        	
+								        	</div>
+								    </div>
+								    <div class="space" style="height: 50px!important; clear: both!important;"></div>
+
+                                    <div class="form-group">
+										<label class="col-md-3 control-label">Foto campaña</label>
+										<div class="col-md-9">
+											<input type="file" name="imagecmp" id="exampleInputFile">
+										</div>
+									</div>	
+
+									 <div class="row" style="margin-left: 80px;margin-right: auto;">
+								      	<div class="col-md-11" >
+								      		 <div class="row mix-grid thumbnails">
+									        <?php foreach($cmpi as $cmpf): ?>
+
+
+					                                   <div class=" col-md-4 product-item">
+										                  <div class="pi-img-wrapper" >
+										                  
+			                              						<div class="lna" id="<?php echo $cmpf->id; ?>">
+												                    <a href="javascript:;" class="eliminarEtpcmp"><i class="fa fa-times"></i></a>
+												                    <img src="<?php echo asset('imgprd/'.$cmpf->imagecmp); ?>" class="img-responsive" alt="Berry Lace Dress">
+										                  		</div>
+										                  	
+										                  </div>
+							               				 
+										                 
+										                </div>
+				 
+
+												<?php endforeach; ?>
+				                              </div>
+							        	
+								        	</div>
+								    </div>
+									
+								</div>
+								<div class="form-actions fluid">
+									<div class="row">
+										<div class="col-md-offset-3 col-md-9">
+											<button type="submit" class="btn green">Guardar cambios</button>
+											<button type="button" class="btn default">Cancelar</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- END FORM-->
+						</div>
+					</div>
+				</div>
+                    
+                <div class="col-md-6">
+                <div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>Empresa
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+
+						
+							<?php echo Form::open(array('url'=>'admin/editemp/','files'=>true,'class'=>'form-horizontal')); ?>
+
+								<?php foreach($registros as $proy): ?>
+								<div class="form-body">
+									<div class="form-group">
+										<label class="control-label col-md-2">Texto intro</label>
+										<div class="col-md-10">
+											<textarea class="wysihtml5 form-control" rows="6" name="textointro" ><?php echo $proy->textointro; ?></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Foto</label>
+										<div class="col-md-9">
+											<input type="file" id="exampleInputFile" name="image">
+										</div>
+									</div>
+									<div class="row" style="margin-left: 80px;margin-right: auto;">
+								      	<div class="col-md-11" >
+								      		 <div class="row mix-grid thumbnails">	
+
+								      		 		<div class=" col-md-4 product-item">
+										                  <div class="pi-img-wrapper" >
+										                  				                              						
+												                    <img src="<?php echo asset('imgprd/'.$proy->image); ?>" class="img-responsive" alt="Berry Lace Dress">
+
+										                  </div>							               				  
+										            </div>	 
+												
+				                              </div>
+							        	
+								        	</div>
+								    </div>
+							
+									<div class="form-group">
+										<label class="control-label col-md-2">Texto complementario</label>
+										<div class="col-md-10">
+											<textarea class="wysihtml5 form-control" rows="6" name="textocompl" ><?php echo $proy->textocompl; ?></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions fluid">
+									<div class="row">
+										<div class="col-md-offset-3 col-md-9">
+											<button type="submit" class="btn green">Guardar cambios</button>
+											<button type="button" class="btn default">Cancelar</button>
+										</div>
+									</div>
+								</div>
+								<?php endforeach; ?>
+							</form>
+							<!-- END FORM-->
+						</div>
+
+					</div></div>
+
+					<div class="col-md-6">
+                <div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>Post venta
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+
+						
+							<?php echo Form::open(array('url'=>'admin/editpostventa/','files'=>true,'class'=>'form-horizontal')); ?>
+
+								<?php foreach($postve as $proy): ?>
+								<div class="form-body">
+									<div class="form-group">
+										<label class="control-label col-md-2">Texto intro</label>
+										<div class="col-md-10">
+											<textarea class="wysihtml5 form-control" rows="6" name="textointro" ><?php echo $proy->textointro; ?></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Foto</label>
+										<div class="col-md-9">
+											<input type="file" id="exampleInputFile" name="image">
+										</div>
+									</div>
+									<div class="row" style="margin-left: 80px;margin-right: auto;">
+								      	<div class="col-md-11" >
+								      		 <div class="row mix-grid thumbnails">	
+
+								      		 		<div class=" col-md-4 product-item">
+										                  <div class="pi-img-wrapper" >
+										                  				                              						
+												                    <img src="<?php echo asset('imgprd/'.$proy->img); ?>" class="img-responsive" alt="Berry Lace Dress">
+
+										                  </div>							               				  
+										            </div>	 
+												
+				                              </div>
+							        	
+								        	</div>
+								    </div>
+							
+									
+								</div>
+								<div class="form-actions fluid">
+									<div class="row">
+										<div class="col-md-offset-3 col-md-9">
+											<button type="submit" class="btn green">Guardar cambios</button>
+											<button type="button" class="btn default">Cancelar</button>
+										</div>
+									</div>
+								</div>
+								<?php endforeach; ?>
+							</form>
+							<!-- END FORM-->
+						</div>
+
+					</div></div>
+
+
+
+					<div class="col-md-6">
+                <div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>Vende tu terreno
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+
+						
+							<?php echo Form::open(array('url'=>'admin/editvendetuterreno/','files'=>true,'class'=>'form-horizontal')); ?>
+
+								<?php foreach($vendetu as $proy): ?>
+								<div class="form-body">
+									<div class="form-group">
+										<label class="control-label col-md-2">Texto intro</label>
+										<div class="col-md-10">
+											<textarea class="wysihtml5 form-control" rows="6" name="textointro" ><?php echo $proy->textointro; ?></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Foto</label>
+										<div class="col-md-9">
+											<input type="file" id="exampleInputFile" name="image">
+										</div>
+									</div>
+									<div class="row" style="margin-left: 80px;margin-right: auto;">
+								      	<div class="col-md-11" >
+								      		 <div class="row mix-grid thumbnails">	
+
+								      		 		<div class=" col-md-4 product-item">
+										                  <div class="pi-img-wrapper" >
+										                  				                              						
+												                    <img src="<?php echo asset('imgprd/'.$proy->img); ?>" class="img-responsive" alt="Berry Lace Dress">
+
+										                  </div>							               				  
+										            </div>	 
+												
+				                              </div>
+							        	
+								        	</div>
+								    </div>
+							
+									
+								</div>
+								<div class="form-actions fluid">
+									<div class="row">
+										<div class="col-md-offset-3 col-md-9">
+											<button type="submit" class="btn green">Guardar cambios</button>
+											<button type="button" class="btn default">Cancelar</button>
+										</div>
+									</div>
+								</div>
+								<?php endforeach; ?>
+							</form>
+							<!-- END FORM-->
+						</div>
+
+					</div></div>
+			</div>
+			<!-- END PAGE CONTENT INNER -->
+		</div>
+	</div>
+	<!-- END PAGE CONTENT -->
+</div>
+
+<script type="text/javascript">
+   //Add Etapas
+  $('.eliminarEtp').click(function(){
+    var data={};
+    data.ides=$(this).parent().parent().find('.lna').attr('id');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,      
+      url: '../imgs/imgslider',           
+      success: function(data) {
+        $(elimianr).remove();
+        console.log(data);
+      }
+    });
+  });
+
+  $('.eliminarEtpcmp').click(function(){
+    var data={};
+    data.ides=$(this).parent().parent().find('.lna').attr('id');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,      
+      url: '../imgs/imgcmp',           
+      success: function(data) {
+        $(elimianr).remove();
+        console.log(data);
+      }
+    });
+  });
+
+
+
+  postImgpag
+</script>
+
+<?php echo $__env->make('includes_admin.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

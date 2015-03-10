@@ -1,0 +1,41 @@
+
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-container">
+  <div class="page-content">
+  <div class="columneleft">
+    <ul class="ulbarra" data-auto-scroll="true" data-slide-speed="200">
+                  <li class="drags" data-tipo="fk"><a><i class="fa fa-share-alt-square"></i></a></li>          
+                  <li class="drags" data-tipo="titulo"><a><i class="fa fa-repeat"></i></a></li>
+                  <li class="drags" data-tipo="introtexto"><a><i class="fa fa-align-left"></i></a></li>
+                  <li class="drags" data-tipo="texto"><a><i class="fa fa-tasks"></i></a></li>
+                  <li class="drags" data-tipo="cuadrotexto"><a><i class="fa fa-list-alt"></i></a></li>
+                  <li class="drags" data-tipo="desplegable"><a><i class="fa fa-th-list"></i></a></li>
+                  <li class="drags" data-tipo="radio"><a><i class="fa fa-dot-circle-o"></i></a></li>
+                  <li class="drags" data-tipo="checkbox"><a><i class="fa fa-check-square-o"></i></a></li>
+                  <li class="drags" data-tipo="imagen"><a><i class="fa fa-picture-o"></i></a></li>          
+                  <li class="drags" data-tipo="archivos"><a><i class="fa fa-file"></i></a></li>  
+                  <li class="drags" data-tipo="enviar"><a><i class="fa fa-share-square-o"></i></a></li>
+              </ul> 
+
+  </div>
+  <h3 class="page-title">Crear Módulo</h3>
+  	<div class="datosforms">
+  		<?php echo Form::open(array('url'=>'/veesy/modules/saveform')); ?>
+
+  			<?php echo Form::label('nombre', 'Nombre',array('class' => 'control-label')); ?>
+
+  			<?php echo Form::text('nombre', Input::old('nombreform'),array('class' => 'form-control')); ?>
+
+  		<?php echo Form::close(); ?>
+
+  	</div>
+  	<div class="titcampos">Campos del formulario:</div>
+    <div class="areaforms"></div>
+    <div class="btnforms">
+         <a class="btn green" onclick="guardarform();">Guardar</a>             
+    </div>
+             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

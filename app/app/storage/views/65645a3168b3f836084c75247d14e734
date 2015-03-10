@@ -1,0 +1,14 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title"> Crear Sdfsdfsdf<small></small></h3>            
+      </div>
+    </div>
+    <div class="row"><form name="formen" id="formen" action="/veesy/sdfsdfsdf/save" method="post" enctype="multipart/form-data"><div class='item'><div class='labelfo'>sdf</div><div class='inputf'><input type='text' name='sdf' id='sdf' placeholder='fsdsd' class='s' /></div></div><div class='item'><div class='labelfo'><input type='submit' name='enviar' value='sdf' /></div></div>       
+  </div>  
+</div>             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

@@ -1,0 +1,69 @@
+.content h2 {
+font: 400 37px "PT Sans Narrow", Arial, sans-serif;
+margin: 0 0 10px;
+text-transform: uppercase;
+text-align: center;
+}
+
+.btn_mas{
+
+	text-align: center;
+	padding-top: 18px 2px;
+}
+
+.btn_mas a{
+	font-size: 20px;
+}
+
+.descrip {
+background-color: #00AEF2;
+margin: 0px 0 0 0;
+padding: 18px 2px;
+line-height: 1.9;
+width: 250px;
+font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.descrip h3 {
+color: #FDF9F9;
+font-size: 17px;
+font-weight: 400;
+line-height: 1.0;
+margin: 0;
+text-transform: uppercase;
+}
+
+
+.corporate{
+	background:#f8f8f8;
+}
+
+.gkContactSocialIcons  a {
+display: block;
+float: left;
+height: 32px;
+margin-right: 6px;
+overflow: hidden;
+width: 32px;
+}
+
+.bubble {
+background: #7484ff;
+color: #fff;
+
+margin: 20px 50px 40px ;
+padding: 15px 20px;
+position: relative;
+border-color: #7484ff;
+border-left: 22px solid transparent;
+border-style: solid;
+border-width: 22px 0 0 22px;
+bottom: -22px;
+content: "";
+
+
+
+width: 900px;
+}
+
+	

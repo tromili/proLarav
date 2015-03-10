@@ -1,0 +1,157 @@
+
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <h3 class="page-title">Módulos <small>Administrador de Módulos</small></h3>
+        <div class="btnright">
+         <a class="btn green" href="/veesy/modules/create">Agregar nuevo módulo</a>             
+        </div>      
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12">
+              <table class="table table-striped table-bordered table-advance table-hover">
+
+              <thead>
+              <tr>
+                <th>Nombre</th>
+               <!--  <th>Campos</th> -->
+                <!-- <th>Nº Fotos</th>   -->              
+                <!-- <th>Previsualizar</th> -->
+               <!--  <th>Estado</th> -->
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php 
+                foreach ($lista as $fila) {
+
+                 /* if($fila->estado==0)
+                    $estado = 'deshabilitado';
+
+                  if($fila->estado==1)
+                    $estado = 'Publicado';*/
+              ?>
+                <tr id="f<?php echo $fila->id_forms; ?>">
+                    <td><a href="/veesy/forms/edit/<?php echo $fila->id_forms; ?>"><?php echo $fila->name; ?></a></td>
+                  
+                    <td width="50" style="position:relative;"><a data-toggle="modal" href="/veesy/forms/edit/<?php echo $fila->id_forms; ?>"><i class="fa fa-edit"></i></a> <a data-funcion="eliminarforms('forms',<?php echo $fila->id_forms; ?>);" class="actdel"><i class="fa fa-times"></i></a></td>
+                </tr>
+
+              <?php } ?>
+               
+
+              </tbody>
+
+              </table>
+
+            
+
+                
+
+          </div>
+
+            
+
+      
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+
+  </div>
+ <div class="modal fade" id="nuevo_boda" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                      <h3 class="modal-title">Nueva Módulo</h3>
+                    </div>
+                    <form action="/veesy/bodas" enctype="multipart/form-data" method="post" id="formregentre">
+                    <div class="modal-body">
+                      
+                        <input type="hidden" id="accion" name="accion" value="SaveEntregable" />
+                                              
+                       <div class="form-group">
+                              <label class="control-label">Nombre Módulo:</label>
+                              <input  class="form-control" type="text" name="nombre" id="nombre"/>
+                            </div>
+
+                        <div class="form-group">
+                              <label class="control-label">Tipo Módulo:</label>
+                              <input  class="form-control" type="text" name="tipo" id="tipo"/>
+                            </div>
+
+                                            <div class="form-group">
+                              <label class="control-label">Descripción:</label>
+                              <textarea class="form-control descripcion" name="descripcion" id="descripcion"></textarea>
+                            </div>                      
+                                          
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn default" data-dismiss="modal">Cancelar</button>                      
+                                            <input type="submit" class="btn green svrEnt" value="Guardar"/>
+                                            <div class="imgloading" style="display:none;">
+                        <img src="../../assets/global/img/input-spinner.gif" alt="">
+                      </div>
+                    </div></form>
+                  </div>
+                </div>
+                  <!-- /.modal-content -->
+              </div>
+
+<div class="modal fade" id="edita_boda" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                      <h3 class="modal-title">Editar Boda</h3>
+                    </div>
+                    <form action="/veesy/bodas/editar" enctype="multipart/form-data" method="post" id="formregentre">
+                    <div class="modal-body">
+                      
+                        <input type="hidden" id="idboda" name="idboda" value="" />
+                                              
+                       <div class="form-group">
+                              <label class="control-label">Nombre pareja:</label>
+                              <input  class="form-control" type="text" name="nombrepareja" id="nombrepareja"/>
+                            </div>
+
+                      <div class="form-group">
+                              <label class="control-label">Texto Introductorio:</label>
+                              <textarea class="form-control descripcion" name="textintro" id="textintro"></textarea>
+                      </div> 
+
+                      <div class="form-group">
+                              <label class="control-label">Imagen destacada:</label>
+                              <div class="imgprincipal2"><select name="imgdestacada" id="imgdestacada"><option data-imagesrc="../../assets/global/plugins/jquery-file-upload/server/holahola/files/thumbnail/1237803_10201946421966125_7096753685188433668_n.jpg" value="1237803_10201946421966125_7096753685188433668_n.jpg">1237803_10201946421966125_7096753685188433668_n.jpg</option></select></div>
+                      </div>                      
+                                          
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn default" data-dismiss="modal">Cancelar</button>                      
+                                            <input type="submit" class="btn green svrEnt" value="Guardar"/>
+                                            <div class="imgloading" style="display:none;">
+                        <img src="../../assets/global/img/input-spinner.gif" alt="">
+                      </div>
+                    </div></form>
+                  </div>
+                </div>
+                  <!-- /.modal-content -->
+              </div>
+
+              </div>
+
+             
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+ </div>

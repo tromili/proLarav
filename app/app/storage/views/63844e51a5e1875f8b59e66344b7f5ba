@@ -1,0 +1,17 @@
+<?php echo $__env->make('includes.cabecera2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<input type="hidden" id="nameuser" value="<?php echo Auth::user()->username; ?>" />
+<div class="page-content-wrapper">
+  <div class="page-content">
+  	<div class="row">
+      <div class="col-md-12">
+        <h3 class="page-title"> Modificar Persona<small></small></h3>            
+      </div>
+    </div>
+    <div class="row"><form name="formen" id="formen" action="/veesy/persona/sendedit" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="idc" id="idc" value="<?php echo $item[0]->id; ?>"/>
+    <div class="tituloform">Datos</div><div class="item"><div class="control-label labelfo">Nombre</div><div class="inputf"><input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" class="form-control n" value="<?php echo $item[0]->nombre; ?>"/></div></div><div class="item"><div class="control-label labelfo">Apellidos</div><div class="inputf"><input type="text" name="apellidos" id="apellidos" placeholder="Ingrese apellidos" class="form-control d" value="<?php echo $item[0]->apellidos; ?>"/></div></div><div class="item"><div class="control-label labelfo">Foto</div><input type="file" name="foto" id="foto"/><div class="imgsele"><?php echo $item[0]->foto; ?></div></div><div class='item'><div class='control-label btnformc'><input type='submit' name='enviar' value='Registrar' class='btn green f'/></div></div>       
+  </div>  
+</div>             
+<?php echo $__env->make('includes.piedepagina2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </div>

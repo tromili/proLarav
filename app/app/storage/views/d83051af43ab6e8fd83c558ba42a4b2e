@@ -1,0 +1,383 @@
+<?php echo $__env->make('includes.cabecera', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('includes.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<style type="text/css" media="screen">
+
+
+/**/
+        .evo-palette
+        {
+          background: #fff;
+        }
+        .imgprd
+        {
+          height: 30px;
+        }
+        #clear{
+          clear:both;
+        }
+</style>
+<?php foreach($registros as $registro): ?>
+<?php endforeach; ?>
+<?php echo Form::open(array('url'=>'productos/guardar/'.$registro->id,'files'=>true,'class'=>'form-horizontal')); ?>
+
+<h3 class="page-title">Editar producto</h3>
+<div class="col-md-12">
+  
+  <ul class="page-breadcrumb breadcrumb">
+    <li class="btn-group">
+    <a href="<?=URL::to('admin/administrador'); ?>" class="btn yellow-crusta">Regresar a listado productos</a>
+    <button type="submit" class="btn green"><span>Guardar</span></button>
+    </li>
+  </ul>
+</div>
+<!-- productos -->
+
+
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="portlet light">
+        <div class="portlet-body">
+          <div class="row margin-bottom-30">
+            <div class="row">
+            <!-- <form class="form-horizontal" role="form"> -->
+            
+              <div class="col-md-6 ">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet box blue-madison">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Productos
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Categoría</label>
+                        <div class="col-md-9">
+                          <select class="form-control" name="categoria">
+                            <?php $produdctosCod = Combos::CrearCombo('dat_categoria',$registro->categoria_pr,'id','nombre_cat') ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Nombre</label>
+                        <div class="col-md-9">
+                          <?php echo Form::text('nombre', $registro->nombre_pr, array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Código</label>
+                        <div class="col-md-9">
+                          <?php echo Form::text('codigo', $registro->codigo_pr, array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Componentes</label>
+                        <div class="col-md-9">
+                          <?php echo Form::textarea('componentes', $registro->componentes_pr, array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-body">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Tratamiendo</label>
+                        <div class="col-md-9">
+                          <?php echo Form::textarea('tratamientos', $registro->tratamiento_pr, array('class' => 'form-control')); ?>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END SAMPLE FORM PORTLET-->
+                
+              </div>
+              <div class="col-md-6 ">
+                <!-- prueba -->
+                <div class="portlet blue-madison box">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Receta
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="row static-info">
+                      <div class="col-md-8 value" id="">
+                        <div class="input-group">
+                          <div class="input-icon">
+                            <select class="form-control recursos" name="recursos">
+                              <?php $produdctosCod = Combos::CrearCombo('dat_recursos','','id_rec','descripcion_rec') ?>
+                            </select>                                      
+                          </div>
+                          <span class="input-group-btn">
+                          <input type="text" class="form-control cantidad" style="width: 200px;" placeholder="Cantidad">
+                          <boton class="btn green addprod" type="button"><i class="fa fa-plus"></i></boton>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row static-info" id="resultadosBbuscador" style="max-height:250px; overflow-y:scroll;">
+                    <table class="mytablaAutoCom">
+                    <tbody>
+                    </tbody>
+                    </table>  
+                    </div>
+                    <div class="portlet-body">
+                      <table class="table table-hover table-bordered table-striped recetaTB">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Tipo</th>
+                          <th>Descripción</th>
+                          <th>UM</th>
+                          <th>Cantidad</th>
+                          <th>Costo Unitario</th>
+                          <th>Costo Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($dtllprd as $key ): ?> 
+                            <tr>
+                              <td class="lna" id="<?php echo $key->ides; ?>">
+                                <input type="hidden" name="ides[]" value="<?php echo $key->ides; ?>">
+                                <a href="javascript:;" class="eliminar"><i class="fa fa-times"></i></a>
+                              </td>
+                              <td><?php echo $key->nombre_recurso; ?></td>
+                              <td><?php echo $key->descripcion_rec; ?></td>
+                              <td><?php echo $key->um_rec; ?></td>
+                              <td><input type="text" class="form-control cant" name="cantRec[]" value="<?php echo $key->cant_rec_pr; ?>"></td>
+                              <td class="cstunit"><?php echo $key->costo_local_rec; ?></td>
+                              <td class="totalC"><?php echo $key->cant_rec_pr*$key->costo_local_rec; ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                      <div class="row static-info">
+                      <div class="col-md-5 name">
+                         Monto Total: <span class="totales">0.00</span>
+                      </div>
+                      <div class="col-md-7 value" id="canttotal">
+                      </div>
+                    </div>            
+                  </div>
+                  </div>
+                </div>
+                <!-- end prueba -->
+                <!-- prueba -->
+                <div class="portlet blue-madison box">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Etapas de construcción
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="row static-info">
+                      <div class="col-md-8 value" id="">
+                        <div class="input-group">
+                          
+                          <span class="input-group-btn">
+                          <div class="input-icon">
+                            <select class="form-control etapas" name="etapas">
+                              <?php $produdctosCod = Combos::CrearCombo('dat_etapas_construccion','','id','nombre_etapa') ?>
+                            </select>                                      
+                          </div>
+                          <boton class="btn green addetp" type="button"><i class="fa fa-plus"></i></boton>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row static-info" id="resultadosBbuscador" style="max-height:250px; overflow-y:scroll;">
+                    <table class="mytablaAutoCom">
+                    <tbody>
+                    </tbody>
+                    </table>  
+                    </div>
+                    <div class="portlet-body">
+                      <table class="table table-hover table-bordered table-striped recetaTB">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Id etapa</th>
+                          <th>Nombre etapa</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($dtllEtp as $keyetp): ?>
+                            <tr>
+                              <td class="lna" id="<?php echo $keyetp->ides; ?>">
+                                <input type="hidden" name="" value="">
+                                <a href="javascript:;" class="eliminarEtp"><i class="fa fa-times"></i></a>
+                              </td>
+                              <td><?php echo $keyetp->ides; ?></td>
+                              <td><?php echo $keyetp->nombre_etapa; ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>           
+                  </div>
+                  </div>
+                </div>
+                
+                
+                <!-- Colores -->
+                <div class="portlet blue-madison box">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      Colores Productos
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="row static-info" id="resultadosBbuscador" style="max-height:250px; overflow-y:scroll;">
+
+                    <table class="mytablaAutoCom">
+                    <tbody>
+                    </tbody>
+                    </table>  
+                    </div>
+                    <div class="portlet-body">
+                      <input id="sortpicture" type="file" name="sortpic" />
+                      <table class="table table-hover table-bordered table-striped recetaTB">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Imagen</th>
+                          <th>Color</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($dtlclr as $keyclr): ?>
+                            <tr>
+                              <td class="lna" id="<?php echo $keyclr->id; ?>">
+                                <input type="hidden" name="idcolor[]" value="<?php echo $keyclr->id; ?>">
+                                <a href="javascript:;" class="eliminarEtp"><i class="fa fa-times"></i></a>
+                              </td>
+                              <td>
+                                <?php if($keyclr->img_producto): ?>
+
+                                  <?php echo HTML::image('imgprd/'.$keyclr->img_producto, '', array('class' => 'imgprd')); ?>
+
+                                <?php endif; ?>
+                              </td>
+                              <td>
+                                <input style="width:100px;" name="mycolor[]" class="mycolor" value="<?php echo $keyclr->color_producto; ?>" />
+                              </td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                      </form>
+                  </div>
+                  </div>
+                </div>
+                <!-- end Colores -->
+                <!-- end prueba -->
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var total=0;
+  $('.totalC').each(function() {
+    total+=parseFloat($(this).html());
+  });
+  $('.totales').html((total).toFixed(2));
+  $('.eliminar').click(function(){
+    var data={};
+    data.ides=$(this).parent().parent().find('.lna').attr('id');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/productos/elrcs',         
+      success: function(data) {
+        $(elimianr).remove();
+      }
+    });
+  });
+  $('.addprod').click(function(event) {
+    var data={};
+    lnaS=$(this).parent().parent();
+    data.recurso='<?php echo $registro->id; ?>';
+    data.ides=$(lnaS).find('.recursos').val();
+    data.cantidad=$(lnaS).find('.cantidad').val();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/productos/addprd',         
+      success: function(data) {
+        if(data>0){
+          location.reload();
+        }
+      }
+    });
+  });
+  //Add Etapas
+  $('.addetp').click(function(event) {
+    var data={};
+    lnaS=$(this).parent().parent();
+    data.recurso='<?php echo $registro->id; ?>';
+    data.etapas=$(lnaS).find('.etapas').val();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/productos/addetp',         
+      success: function(data) {
+        if(data>0){
+          location.reload();
+        }
+      }
+    });
+  });
+  $('.eliminarEtp').click(function(){
+    var data={};
+    data.ides=$(this).parent().parent().find('.lna').attr('id');
+    var elimianr = $(this).parent().parent();
+    $.ajax({
+      type: 'POST',
+      data:data,       
+      url: '/productos/elmetp',         
+      success: function(data) {
+        $(elimianr).remove();
+      }
+    });
+  });
+  /*color*/
+  $(document).ready(function() {
+      $(".mycolor").colorpicker();
+  });
+  //upload
+  $('#sortpicture').on('change', function() {
+    var file_data = $(this).prop('files')[0];   
+    var form_data = new FormData();                  
+    form_data.append('file', file_data)                           
+    $.ajax({
+                url: '../colorprod/<?php echo $registro->id; ?>',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(php_script_response){
+                   /* alert(php_script_response);*/
+                   location.reload(true);
+                }
+     });
+});
+</script>
+<?php echo $__env->make('includes.piedepagina', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
