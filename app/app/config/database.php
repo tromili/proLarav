@@ -52,7 +52,7 @@ return array(
 			'prefix'   => '',
 		),
 
-		'mysql' => array(
+		/*'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'sallygws_bushidolara',
@@ -60,17 +60,17 @@ return array(
 			'password'  => 'OJzPuqO}GJtK',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'prefix'    => '',*/
 
-		/*'mysql' => array(
+		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'bushidoft',
+			'database'  => 'pfo',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',*/
+			'prefix'    => '',
 		),
 
 		'pgsql' => array(

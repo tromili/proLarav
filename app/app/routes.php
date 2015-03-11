@@ -15,27 +15,9 @@ Route::get('login', function()
 {
 	return View::make('login');
 });
-
-Route::get('rcontra', function()
-{
-
-	return View::make('rcontra');
-});
-
-
 Route::post('login','UserLogin@user');
-Route::get('logout', array('uses'=>'UserLogin@logout'));
-Route::post('enviarc','UserLogin@enviarp');
-
-
-//Rutas del sistema
-/*Route::get('admin',array('before'=>'auth',function()
-{
-	return View::make('admin.index');
-}));*/
-
-//controladores del sistema
+/*Route::get('logout', array('uses'=>'UserLogin@logout'));
+Route::post('enviarc','UserLogin@enviarp');*/
 Route::controller('admin','AdminController');
-Route::controller('imgs','ImgController');
-Route::controller('/','FrontController');
+Route::controller('','FrontController');
 ?>
